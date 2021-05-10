@@ -2,13 +2,23 @@ package core
 
 import "time"
 
+type EventClass string
+
+const (
+	CommandEvent  EventClass = "C"
+	DomainEvent   EventClass = "D"
+	BusinessEvent EventClass = "B"
+)
+
 type Event interface {
-	ID() uint64
+	ID() string
+	Source() string
+	Class() EventClass
 	Type() string
 	Time() time.Time
 	Author() string
-	Payload(interface{})
-	Source() Entity
+	Data(interface{})
+	Entity() Entity
 	Trigger() Event
 	Transaction() string
 }

@@ -5,7 +5,17 @@ import (
 	"github.com/cevixe/core-sdk-go/core"
 )
 
-func NewEvent(ctx context.Context, entity core.Entity, state interface{}, payload interface{}) core.Event {
+func NewCommandEvent(ctx context.Context, data interface{}) core.Event {
 	factory := ctx.Value(CevixeEventFactory).(core.EventFactory)
-	return factory.NewEvent(ctx, entity, state, payload)
+	return factory.NewCommandEvent(ctx, data)
+}
+
+func NewDomainEvent(ctx context.Context, entity core.Entity, data interface{}, state interface{}) core.Event {
+	factory := ctx.Value(CevixeEventFactory).(core.EventFactory)
+	return factory.NewDomainEvent(ctx, data, entity, state)
+}
+
+func NewBusinessEvent(ctx context.Context, data interface{}) core.Event {
+	factory := ctx.Value(CevixeEventFactory).(core.EventFactory)
+	return factory.NewBusinessEvent(ctx, data)
 }

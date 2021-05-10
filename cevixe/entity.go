@@ -6,8 +6,7 @@ import (
 )
 
 func Entity(ctx context.Context, typ string, id string) core.Entity {
-	store := ctx.Value(CevixeEventStore).(core.EventStore)
-	source := "/" + typ + "/" + id
-	event := store.GetEvent(ctx, source, nil)
-	return event.Source()
+	store := ctx.Value(CevixeStateStore).(core.StateStore)
+	entity := store.GetLastVersion(ctx, typ, id)
+	return entity
 }
