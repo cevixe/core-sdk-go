@@ -10,3 +10,9 @@ func Entity(ctx context.Context, typ string, id string) core.Entity {
 	entity := store.GetLastVersion(ctx, typ, id)
 	return entity
 }
+
+func EntityVersion(ctx context.Context, typ string, id string, version uint64) core.Entity {
+	store := ctx.Value(CevixeStateStore).(core.StateStore)
+	entity := store.GetByVersion(ctx, typ, id, version)
+	return entity
+}
