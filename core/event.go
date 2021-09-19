@@ -8,6 +8,7 @@ const (
 	CommandEvent  EventClass = "C"
 	DomainEvent   EventClass = "D"
 	BusinessEvent EventClass = "B"
+	SystemEvent   EventClass = "S"
 )
 
 type Event interface {
@@ -21,4 +22,9 @@ type Event interface {
 	Entity() Entity
 	Trigger() Event
 	Transaction() string
+}
+
+type EventPage interface {
+	Items() []Event
+	NextToken() string
 }

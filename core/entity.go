@@ -12,3 +12,8 @@ type Entity interface {
 	CreatedAt() time.Time
 	CreatedBy() string
 }
+
+type EntityPage interface {
+	Items() []Entity
+	NextToken() string
+}
