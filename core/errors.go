@@ -15,3 +15,7 @@ type DomainEntityNotFound struct {
 	Type string `json:"type,omitempty"`
 	ID   string `json:"id,omitempty"`
 }
+
+type NoEventGenerated struct {
+	Handler string `json:"handler,omitempty"`
+}
