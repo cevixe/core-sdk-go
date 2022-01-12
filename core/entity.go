@@ -11,6 +11,7 @@ type Entity interface {
 	UpdatedBy() string
 	CreatedAt() time.Time
 	CreatedBy() string
+	IsDeleted() bool
 }
 
 type EntityPage interface {
